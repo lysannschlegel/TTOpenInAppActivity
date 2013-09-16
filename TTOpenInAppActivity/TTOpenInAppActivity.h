@@ -14,6 +14,12 @@
 
 @property (nonatomic, weak) id superViewController;
 
+// If a UIImage is supplied, this defines the file name to use when saving the temporary image
+// (Default: "export.png"). If the name specifies a JPEG file, the image is saved as JPEG with
+// best quality. Else it is saved as PNG.
+// The image is stored in the app's caches directory, and deleted when the action completes.
+@property (nonatomic, strong) NSString* temporaryImageFileName;
+
 - (id)initWithView:(UIView *)view andRect:(CGRect)rect;
 - (id)initWithView:(UIView *)view andBarButtonItem:(UIBarButtonItem *)barButtonItem;
 

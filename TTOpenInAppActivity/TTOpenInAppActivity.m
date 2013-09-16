@@ -10,10 +10,12 @@
 
 #import "TTOpenInAppActivity.h"
 #import <MobileCoreServices/MobileCoreServices.h> // For UTI
+#import <Foundation/NSPathUtilities.h>
 
 @interface TTOpenInAppActivity ()
     // Private attributes
     @property (nonatomic, strong) NSURL *fileURL;
+    @property (nonatomic, assign) BOOL isTemporary;
     @property (atomic) CGRect rect;
     @property (nonatomic, strong) UIBarButtonItem *barButtonItem;
     @property (nonatomic, strong) UIView *superView;
@@ -35,6 +37,7 @@
     if(self =[super init]){
         self.superView = view;
         self.rect = rect;
+        self.temporaryImageFileName = @"export.png";
     }
     return self;
 }
@@ -44,6 +47,7 @@
     if(self =[super init]){
         self.superView = view;
         self.barButtonItem = barButtonItem;
+        self.temporaryImageFileName = @"export.png";
     }
     return self;
 }
@@ -69,7 +73,7 @@
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
 {
 	for (id activityItem in activityItems) {
-		if ([activityItem isKindOfClass:[NSURL class]]) {
+		if ([activityItem isKindOfClass:[NSURL class]] || [activityItem isKindOfClass:[UIImage class]]) {
 			return YES;
 		}
 	}
@@ -82,6 +86,27 @@
 	for (id activityItem in activityItems) {
 		if ([activityItem isKindOfClass:[NSURL class]]) {
 			self.fileURL = activityItem;
+			self.isTemporary = NO;
+			break;
+		} else if([activityItem isKindOfClass:[UIImage class]]) {
+			// get file name for saving
+			NSString* temporaryDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+			NSURL* tempURL = [NSURL fileURLWithPathComponents:@[temporaryDirectory, self.temporaryImageFileName]];
+			
+			// save the image to the temporary location
+			NSData *imageData = nil;
+			if([[self UTIForURL:tempURL] isEqual:@"public.jpeg"]) {
+				imageData = UIImageJPEGRepresentation(activityItem, 1);
+			} else {
+				imageData = UIImagePNGRepresentation(activityItem);
+			}
+			if([imageData writeToURL:tempURL atomically:NO]) {
+				self.fileURL = tempURL;
+				self.isTemporary = YES;
+				break;
+			} else {
+				NSLog(@"Error: failed to save temporary image to open in other app.");
+			}
 		}
 	}
 }
@@ -160,6 +185,16 @@
 {
     // Inform app that the activity has finished
     [self activityDidFinish:YES];
+
+	// delete the temporary image
+	if(self.isTemporary && self.fileURL) {
+		NSError *error;
+		if (![[NSFileManager defaultManager] removeItemAtURL:self.fileURL error:&error]) {
+			NSLog(@"Error removing temporary file at path %@: %@", self.fileURL, error.description);
+		}
+		self.fileURL = nil;
+		self.isTemporary = NO;
+	}
 }
 
 @end
