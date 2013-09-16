@@ -183,9 +183,6 @@
 
 - (void) documentInteractionControllerDidDismissOpenInMenu: (UIDocumentInteractionController *) controller
 {
-    // Inform app that the activity has finished
-    [self activityDidFinish:YES];
-
 	// delete the temporary image
 	if(self.isTemporary && self.fileURL) {
 		NSError *error;
@@ -195,6 +192,9 @@
 		self.fileURL = nil;
 		self.isTemporary = NO;
 	}
+    
+    // Inform app that the activity has finished
+    [self activityDidFinish:YES];
 }
 
 @end
