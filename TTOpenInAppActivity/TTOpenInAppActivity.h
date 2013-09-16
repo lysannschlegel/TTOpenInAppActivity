@@ -10,6 +10,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class TTOpenInAppActivity;
+
+@protocol TTOpenInAppActivityDelegate <NSObject>
+@optional
+- (void)openInAppActivityWillPresentMenu:(TTOpenInAppActivity*)activity;
+- (void)openInAppActivityDidDismissMenu:(TTOpenInAppActivity*)activity;
+@end
+
 @interface TTOpenInAppActivity : UIActivity <UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, weak) id superViewController;
@@ -20,7 +28,11 @@
 // The image is stored in the app's caches directory, and deleted when the action completes.
 @property (nonatomic, strong) NSString* temporaryImageFileName;
 
+@property (nonatomic, weak) id<TTOpenInAppActivityDelegate> delegate;
+
 - (id)initWithView:(UIView *)view andRect:(CGRect)rect;
 - (id)initWithView:(UIView *)view andBarButtonItem:(UIBarButtonItem *)barButtonItem;
+
+- (void)dismissMenuAnimated:(BOOL)animated;
 
 @end

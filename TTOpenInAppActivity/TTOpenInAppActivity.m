@@ -25,6 +25,8 @@
     - (NSString *)UTIForURL:(NSURL *)url;
     - (void)openDocumentInteractionController;
 
+    - (void)deleteTemporaryImage;
+
 @end
 
 @implementation TTOpenInAppActivity
@@ -50,6 +52,10 @@
         self.temporaryImageFileName = @"export.png";
     }
     return self;
+}
+
+- (void)dealloc {
+    [self deleteTemporaryImage];
 }
 
 - (NSString *)activityType
@@ -179,12 +185,19 @@
     }
 }
 
-#pragma mark - UIDocumentInteractionControllerDelegate
+- (void)dismissMenuAnimated:(BOOL)animated {
+    // delete temp image
+    [self deleteTemporaryImage];
+    
+    // hide menu
+    [self.docController dismissMenuAnimated:animated];
+    
+    // Inform app that the activity has finished
+    [self activityDidFinish:NO];
+}
 
-- (void) documentInteractionControllerDidDismissOpenInMenu: (UIDocumentInteractionController *) controller
-{
-	// delete the temporary image
-	if(self.isTemporary && self.fileURL) {
+- (void)deleteTemporaryImage {
+    if(self.isTemporary && self.fileURL) {
 		NSError *error;
 		if (![[NSFileManager defaultManager] removeItemAtURL:self.fileURL error:&error]) {
 			NSLog(@"Error removing temporary file at path %@: %@", self.fileURL, error.description);
@@ -192,6 +205,26 @@
 		self.fileURL = nil;
 		self.isTemporary = NO;
 	}
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+
+- (void) documentInteractionControllerWillPresentOpenInMenu:(UIDocumentInteractionController *)controller {
+    // inform delegate
+    if([self.delegate respondsToSelector:@selector(openInAppActivityWillPresentMenu:)]) {
+        [self.delegate openInAppActivityWillPresentMenu:self];
+    }
+}
+
+- (void) documentInteractionControllerDidDismissOpenInMenu: (UIDocumentInteractionController *) controller
+{
+    // inform delegate
+    if([self.delegate respondsToSelector:@selector(openInAppActivityDidDismissMenu:)]) {
+        [self.delegate openInAppActivityDidDismissMenu:self];
+    }
+    
+    // delete temp image
+	[self deleteTemporaryImage];
     
     // Inform app that the activity has finished
     [self activityDidFinish:YES];
