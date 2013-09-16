@@ -1,6 +1,8 @@
 # TTOpenInAppActivity
 
-`TTOpenInAppActivity` is a `UIActivity` subclass that provides an "Open In ..." action to a `UIActivityViewController`. `TTOpenInAppActivity` uses an UIDocumentInteractionController to present all Apps than can handle the document specified with a file URL.
+`TTOpenInAppActivity` is a `UIActivity` subclass that provides an "Open In ..." action to a `UIActivityViewController`.
+`TTOpenInAppActivity` uses an UIDocumentInteractionController to present all Apps than can handle the document specified by the activity item.
+Supported item types are NSURL instances that point to local files and UIImage instances.
 
 <img src=http://i40.tinypic.com/xn887b.png width="320px" />
 
@@ -21,10 +23,11 @@
 
 Add the `TTOpenInAppActivity` subfolder to your project. There are no required libraries other than `UIKit` and `MobileCoreServices`.
 
-## Usage.
+## Usage
 
-- We need do keep an referemce to the superview (UIActionSheet). In this way we dismiss the UIActionSheet ans instead display the UIDocumentInterActionController.
+- We keep a weak reference to the superview (UIActionSheet). In this way we dismiss the UIActionSheet ans instead display the UIDocumentInterActionController.
 - `TTOpenInAppActivity` needs to be initalized with the current view (iPhone & iPad) and a) a CGRect or b) a UIBarButtonItem (both only for iPad) from where it can present the UIDocumentInterActionController.
+- If the activity item type is a UIImage, the image will be saved in the app's Caches directory temporarily to share it with the other app. You can specify the file name of the temporary image using the `temporaryImageFileName` property (default is `@"export.png"`). If `temporaryImageFileName` specifies a JPEG file, the image is saved as JPEG. Else it's saved as PNG.
 - See example project.
 
 ```objectivec
