@@ -26,6 +26,10 @@
 		3C4D043C169EB09900888955 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4D043B169EB09900888955 /* MobileCoreServices.framework */; };
 		3CEE8BFE17B30CCD0034D9F4 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEE8BFC17B30CCD0034D9F4 /* TTOpenInAppActivity7.png */; };
 		3CEE8BFF17B30CCD0034D9F4 /* TTOpenInAppActivity7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEE8BFD17B30CCD0034D9F4 /* TTOpenInAppActivity7@2x.png */; };
+		8A09A37817E7C4FB00C6B32A /* TTOpenInAppActivity7@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A09A37617E7C4FB00C6B32A /* TTOpenInAppActivity7@2x~iphone.png */; };
+		8A09A37917E7C4FB00C6B32A /* TTOpenInAppActivity7~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A09A37717E7C4FB00C6B32A /* TTOpenInAppActivity7~iphone.png */; };
+		8A09A37C17E7D71000C6B32A /* TTOpenInAppActivity@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A09A37A17E7D71000C6B32A /* TTOpenInAppActivity@2x~iphone.png */; };
+		8A09A37D17E7D71000C6B32A /* TTOpenInAppActivity~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A09A37B17E7D71000C6B32A /* TTOpenInAppActivity~iphone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		3C4D043B169EB09900888955 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3CEE8BFC17B30CCD0034D9F4 /* TTOpenInAppActivity7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity7.png; sourceTree = "<group>"; };
 		3CEE8BFD17B30CCD0034D9F4 /* TTOpenInAppActivity7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity7@2x.png"; sourceTree = "<group>"; };
+		8A09A37617E7C4FB00C6B32A /* TTOpenInAppActivity7@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity7@2x~iphone.png"; sourceTree = "<group>"; };
+		8A09A37717E7C4FB00C6B32A /* TTOpenInAppActivity7~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity7~iphone.png"; sourceTree = "<group>"; };
+		8A09A37A17E7D71000C6B32A /* TTOpenInAppActivity@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity@2x~iphone.png"; sourceTree = "<group>"; };
+		8A09A37B17E7D71000C6B32A /* TTOpenInAppActivity~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity~iphone.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +144,12 @@
 				3C4D042D169EAEEE00888955 /* TTOpenInAppActivity.m */,
 				3C4D042E169EAEEE00888955 /* TTOpenInAppActivity.png */,
 				3C4D042F169EAEEE00888955 /* TTOpenInAppActivity@2x.png */,
+				8A09A37A17E7D71000C6B32A /* TTOpenInAppActivity@2x~iphone.png */,
+				8A09A37B17E7D71000C6B32A /* TTOpenInAppActivity~iphone.png */,
 				3CEE8BFC17B30CCD0034D9F4 /* TTOpenInAppActivity7.png */,
 				3CEE8BFD17B30CCD0034D9F4 /* TTOpenInAppActivity7@2x.png */,
+				8A09A37617E7C4FB00C6B32A /* TTOpenInAppActivity7@2x~iphone.png */,
+				8A09A37717E7C4FB00C6B32A /* TTOpenInAppActivity7~iphone.png */,
 			);
 			name = TTOpenInAppActivity;
 			path = ../../TTOpenInAppActivity;
@@ -198,10 +210,14 @@
 				3C4D040C169EAE4A00888955 /* Default.png in Resources */,
 				3C4D040E169EAE4A00888955 /* Default@2x.png in Resources */,
 				3C4D0410169EAE4A00888955 /* Default-568h@2x.png in Resources */,
+				8A09A37C17E7D71000C6B32A /* TTOpenInAppActivity@2x~iphone.png in Resources */,
 				3C4D0413169EAE4A00888955 /* MainStoryboard_iPhone.storyboard in Resources */,
 				3CEE8BFE17B30CCD0034D9F4 /* TTOpenInAppActivity7.png in Resources */,
+				8A09A37817E7C4FB00C6B32A /* TTOpenInAppActivity7@2x~iphone.png in Resources */,
 				3C4D0416169EAE4A00888955 /* MainStoryboard_iPad.storyboard in Resources */,
+				8A09A37917E7C4FB00C6B32A /* TTOpenInAppActivity7~iphone.png in Resources */,
 				3C4D0433169EAEEE00888955 /* TTOpenInAppActivity.png in Resources */,
+				8A09A37D17E7D71000C6B32A /* TTOpenInAppActivity~iphone.png in Resources */,
 				3C4D0434169EAEEE00888955 /* TTOpenInAppActivity@2x.png in Resources */,
 				3CEE8BFF17B30CCD0034D9F4 /* TTOpenInAppActivity7@2x.png in Resources */,
 				3C4D0438169EAFAF00888955 /* empty.pdf in Resources */,
